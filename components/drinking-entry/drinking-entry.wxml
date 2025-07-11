@@ -1,0 +1,31 @@
+<!--components/drinking-entry/drinking-entry.wxml-->
+<view class="drinking-entry">
+  <view class="entry-header">
+    <text class="entry-title">添加饮酒记录</text>
+  </view>
+  
+  <view class="entry-form">
+    <view class="form-item">
+      <text class="form-label">酒类</text>
+      <picker bindchange="onDrinkTypeChange" value="{{drinkType}}" range="{{drinkTypes}}" range-key="label">
+        <view class="picker">
+          {{drinkTypes[drinkType].label}}
+        </view>
+      </picker>
+    </view>
+    
+    <view class="form-item">
+      <text class="form-label">数量 (ml)</text>
+      <input type="number" value="{{amount}}" bindinput="onAmountChange" placeholder="请输入数量" />
+    </view>
+    
+    <view class="form-item">
+      <text class="form-label">时间</text>
+      <text class="timestamp">{{timestamp || '当前时间'}}</text>
+    </view>
+  </view>
+  
+  <view class="entry-actions">
+    <button class="save-btn" bindtap="onSave">保存记录</button>
+  </view>
+</view> 

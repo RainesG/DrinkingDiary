@@ -1,0 +1,64 @@
+{
+  "name": "drinking-diary-miniprogram",
+  "version": "1.0.0",
+  "description": "A WeChat Mini Program for tracking drinking habits and maintaining a drinking diary",
+  "main": "app.js",
+  "scripts": {
+    "dev": "echo 'Open WeChat Developer Tools to run the Mini Program'",
+    "build": "echo 'Mini Program builds automatically in WeChat Developer Tools'",
+    "lint": "eslint . --ext .js",
+    "lint:fix": "eslint . --ext .js --fix",
+    "format": "prettier --write \"**/*.{js,json,md,wxml,wxss}\"",
+    "format:check": "prettier --check \"**/*.{js,json,md,wxml,wxss}\"",
+    "clean": "rm -rf node_modules pnpm-lock.yaml .pnpm-store",
+    "install:clean": "pnpm install --force",
+    "update": "pnpm update",
+    "outdated": "pnpm outdated",
+    "prepare": "husky install"
+  },
+  "keywords": [
+    "wechat",
+    "miniprogram",
+    "drinking",
+    "diary",
+    "tracker",
+    "health"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@8.15.0",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.0.0"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "typescript": "^5.0.0"
+    },
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "react",
+        "react-dom"
+      ]
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,wxml,wxss}": [
+      "prettier --write"
+    ]
+  }
+}
