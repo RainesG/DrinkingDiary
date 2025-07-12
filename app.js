@@ -1,5 +1,8 @@
+const services = require('./server/index');
 // app.js
 App({
+  service: services,
+
   onLaunch() {
     // Mini Program initialization logic
     console.log('Mini Program launched');

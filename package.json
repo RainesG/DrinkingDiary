@@ -14,7 +14,8 @@
     "install:clean": "pnpm install --force",
     "update": "pnpm update",
     "outdated": "pnpm outdated",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "tsc": "node ./node_modules/typescript/lib/tsc.js"
   },
   "keywords": [
     "wechat",
@@ -34,12 +35,14 @@
   "devDependencies": {
     "@types/node": "^20.0.0",
     "eslint": "^8.0.0",
-    "prettier": "^3.0.0",
     "husky": "^8.0.0",
-    "lint-staged": "^13.0.0"
+    "lint-staged": "^13.0.0",
+    "pnpm": "10.13.1",
+    "prettier": "^3.0.0"
   },
   "dependencies": {
-    "dayjs": "^1.11.0"
+    "dayjs": "^1.11.0",
+    "ts": "0.2.2"
   },
   "pnpm": {
     "overrides": {

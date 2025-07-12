@@ -1,0 +1,157 @@
+/* Background and container */
+.container {
+  min-height: 100vh;
+  background: #f9f6ef;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32rpx 16rpx;
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+/* Title styles */
+.title {
+  font-size: 48rpx;
+  font-weight: bold;
+  letter-spacing: 2rpx;
+  color: #222;
+  margin-top: 32rpx;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 32rpx;
+  font-family: 'Brush Script MT', cursive;
+  color: #2d3a6b;
+  margin-bottom: 24rpx;
+  text-align: center;
+}
+
+/* Decorative icons */
+.decor-icons {
+  font-size: 36rpx;
+  margin: 8rpx 0 16rpx 0;
+  text-align: center;
+}
+
+/* Search bar */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 32rpx;
+  box-shadow: 0 4rpx 16rpx #e0e0e0;
+  padding: 12rpx 24rpx;
+  margin: 32rpx 0 24rpx 0;
+  width: 90vw;
+  max-width: 600rpx;
+}
+
+.search-bar input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 28rpx;
+  outline: none;
+  color: #222;
+}
+
+.search-bar button {
+  background: #2d3a6b;
+  color: #fff;
+  border: none;
+  border-radius: 24rpx;
+  padding: 8rpx 32rpx;
+  font-size: 28rpx;
+  margin-left: 16rpx;
+  font-family: inherit;
+  transition: background 0.2s;
+}
+
+.search-bar button:active {
+  background: #1a2240;
+}
+
+/* Cocktail list */
+.cocktail-item {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 20rpx;
+  box-shadow: 0 2rpx 8rpx #e0e0e0;
+  margin: 16rpx 0;
+  padding: 16rpx;
+  width: 90vw;
+  max-width: 600rpx;
+}
+
+.cocktail-item image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 16rpx;
+  margin-right: 24rpx;
+  border: 2rpx solid #2d3a6b;
+}
+
+.cocktail-item text {
+  font-size: 32rpx;
+  color: #2d3a6b;
+  font-weight: bold;
+}
+
+/* Data table (drinkInfo) */
+.infoItem {
+  display: flex;
+  justify-content: space-between;
+  background: #f5e9d7;
+  border-radius: 12rpx;
+  margin: 8rpx 0;
+  padding: 12rpx 24rpx;
+  width: 90vw;
+  max-width: 600rpx;
+  font-size: 28rpx;
+  color: #222;
+  box-shadow: 0 1rpx 4rpx #e0e0e0;
+}
+
+.infoItem text:first-child {
+  font-weight: bold;
+  color: #2d3a6b;
+}
+
+.infoItem text:last-child {
+  color: #b85c38;
+}
+
+/* User info section */
+.userinfo {
+  margin: 32rpx 0 16rpx 0;
+  text-align: center;
+}
+
+.userinfo-avatar {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  margin: 0 auto 8rpx auto;
+  border: 2rpx solid #2d3a6b;
+}
+
+.userinfo-nickname {
+  font-size: 28rpx;
+  color: #2d3a6b;
+  font-weight: bold;
+}
+
+/* Loading and error */
+[wx\:if='{{ loading }}'] {
+  color: #b85c38;
+  font-size: 28rpx;
+  margin: 16rpx 0;
+}
+
+[wx\:if='{{ error }}'] {
+  color: #d7263d;
+  font-size: 28rpx;
+  margin: 16rpx 0;
+}

@@ -4,6 +4,11 @@
     "ignore": [],
     "include": []
   },
+  "scripts": {
+    "beforeCompile": "source ~/.zshrc && npm run tsc",
+    "beforePreview": "source ~/.zshrc && npm run tsc",
+    "beforeUpload": "source ~/.zshrc && npm run tsc"
+  },
   "setting": {
     "bundle": false,
     "userConfirmedBundleSwitch": false,
@@ -27,9 +32,14 @@
     "useApiHook": true,
     "useApiHostProcess": true,
     "showShadowRootInWxmlPanel": true,
-    "packNpmManually": true,
+    "packNpmManually": false,
+    "packNpmRelationList": [
+      {
+        "packageJsonPath": "./package.json",
+        "miniprogramNpmDistDir": "./"
+      }
+    ],
     "enableEngineNative": false,
-    "packNpmRelationList": [],
     "packNpmTool": "pnpm",
     "minifyWXSS": true,
     "showES6CompileOption": false,
@@ -37,7 +47,10 @@
     "compileWorklet": false,
     "localPlugins": false,
     "disableUseStrict": false,
-    "useCompilerPlugins": false,
+    "useCompilerPlugins": [
+      "typescript",
+      "less"
+    ],
     "condition": false,
     "swc": false,
     "disableSWC": true,
@@ -48,7 +61,7 @@
     }
   },
   "compileType": "miniprogram",
-  "libVersion": "2.19.4",
+  "libVersion": "3.8.10",
   "appid": "wx0d53e0d9a3e93035",
   "projectname": "DrinkingDiary",
   "condition": {},
