@@ -1,9 +1,5 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="title">BLI THE BAR</view>
-  <view class="subtitle">Open Bar, Happy Night</view>
-  <view class="decor-icons">🍸 🎲 🍋</view>
-
+<view class="root container">
   <view class="search-bar">
     <input
       type="text"
@@ -13,8 +9,11 @@
       confirm-type="search"
       bindconfirm="getCocktailByName"
     />
-    <button bindtap="getCocktailByName">Search</button>
+    <button bindtap="getCocktailByName" size="mini">Search</button>
   </view>
+  <view class="title">BLI THE BAR</view>
+  <view class="subtitle">Open Bar, Happy Night</view>
+  <view class="decor-icons">🍸 🎲 🍋</view>
 
   <view wx:if="{{ loading }}">Loading...</view>
   <view wx:if="{{ error }}">{{error}}</view>

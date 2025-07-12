@@ -21,21 +21,15 @@
     "list": [
       {
         "pagePath": "pages/page-diary/index",
-        "text": "日记",
-        "iconPath": "",
-        "selectedIconPath": ""
+        "text": "日记"
       },
       {
         "pagePath": "pages/page-map/index",
-        "text": "地图",
-        "iconPath": "",
-        "selectedIconPath": ""
+        "text": "地图"
       },
       {
         "pagePath": "pages/page-recipe/index",
-        "text": "配方",
-        "iconPath": "",
-        "selectedIconPath": ""
+        "text": "配方"
       }
     ]
   }
