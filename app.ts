@@ -1,4 +1,4 @@
-const services = require('./server/index');
+import services = require('./server/index.module');
 // app.js
 App({
   service: services,

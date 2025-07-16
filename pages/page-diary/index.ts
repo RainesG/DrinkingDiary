@@ -1,4 +1,4 @@
-const { getCocktailByName } = require('../../server/cocktailApi');
+import { getCocktailByName, CocktailType } from '../../server/index.module';
 
 Page({
   data: {
@@ -10,7 +10,8 @@ Page({
       wx.canIUse('open-data.type.userAvatarUrl') &&
       wx.canIUse('open-data.type.userNickName'),
     searchValue: '',
-    drinkInfo: [] as { attribute: string; value: string }[],
+    drinkInfo: {} as CocktailType,
+    ingredients: [''],
   },
 
   onLoad() {},
@@ -35,16 +36,15 @@ Page({
   async getCocktailByName() {
     const cocktailInfo = await getCocktailByName(this.data.searchValue);
     const target = cocktailInfo?.drinks?.[0];
-    const drinkInfo = Object.keys(target).reduce(
-      (infos, item) => {
-        if (target[item]) {
-          infos.push({ attribute: item, value: target[item] });
+    if (target) {
+      const ingredients = Object.keys(target).reduce((ingredients, item) => {
+        if (target[item] && item.includes('strIngredient')) {
+          ingredients.push(target[item]);
         }
-        return infos;
-      },
-      [] as { attribute: string; value: string }[]
-    );
-    console.log(drinkInfo);
-    this.setData({ drinkInfo });
+        return ingredients;
+      }, [] as string[]);
+      console.log(target);
+      this.setData({ drinkInfo: target, ingredients });
+    }
   },
 });
