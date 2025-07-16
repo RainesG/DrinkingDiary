@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class="root container">
+<view class="container">
   <view class="search-bar">
     <input
       type="text"
@@ -11,8 +11,8 @@
     />
     <button bindtap="getCocktailByName" size="mini">Search</button>
   </view>
-  <view class="title">Eiusmod esse aute ad culpa excepteur enim in.</view>
-  <view class="subtitle">Velit anim adipisicing sit pariatur tempor.</view>
+  <view class="title">Eiusmod esse aute.</view>
+  <view class="subtitle">Velit anim adipisicing.</view>
   <view class="decor-icons">🍸 🎲 🍋</view>
 
   <view wx:if="{{ cocktails.length }}">

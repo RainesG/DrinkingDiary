@@ -3,7 +3,7 @@
 import { BuildUrlType, RequestParamsType } from './type';
 
 const SERVICE_URLS = {
-  recipe: 'https://www.thecocktaildb.com/api/json/v1/1/search.php',
+  recipe: 'https://cocktail-backend.vercel.app/api/cocktails',
 };
 
 const URL_MODIFIERS = {
