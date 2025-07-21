@@ -1,5 +1,5 @@
 import { httpClient } from './http.module';
-import { handleApiError, showErrorToast } from '../utils/error.module';
+import { handleApiError, showErrorToast } from '@/utils/error.module';
 
 type CocktailType = {
   [key: string]: string;

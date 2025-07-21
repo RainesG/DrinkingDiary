@@ -17,8 +17,8 @@
   <view wx:if="{{ cocktails.length }}">
     <block wx:for="{{ cocktails }}" wx:key="idDrink" wx:for-item="cocktail">
       <view class="cocktail-item">
-        <image src="{{ cocktail.strDrinkThumb }}" mode="aspectFill" />
-        <text>{{cocktail.strDrink}}</text>
+        <image src="{{ cocktail.thumb }}" mode="aspectFill" />
+        <text>{{cocktail.name}}</text>
       </view>
     </block>
   </view>

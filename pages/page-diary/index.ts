@@ -1,8 +1,5 @@
-import { DRINK_TYPES } from '../../utils/config.module';
-import {
-  saveDrinkingRecord,
-  getDrinkingRecords,
-} from '../../utils/storage.module';
+import { DRINK_TYPES } from '@/utils/config.module';
+import { saveDrinkingRecord, getDrinkingRecords } from '@/utils/storage.module';
 
 function getDefaultQuickDrinks() {
   return Object.values(DRINK_TYPES).map((drink: any) => ({

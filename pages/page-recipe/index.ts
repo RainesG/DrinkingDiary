@@ -1,5 +1,5 @@
-import { getCocktailByName, CocktailType } from '../../server/index.module';
-import { handleApiError, showErrorToast } from '../../utils/error.module';
+import { getCocktailByName, CocktailType } from '@/server/index.module';
+import { handleApiError, showErrorToast } from '@/utils/error.module';
 
 Page({
   data: {
@@ -16,19 +16,6 @@ Page({
   },
 
   onLoad() {},
-
-  getUserProfile() {
-    // Get user info
-    wx.getUserProfile({
-      desc: 'Used to display user information',
-      success: res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true,
-        });
-      },
-    });
-  },
 
   onInputChange(e: { detail: { value: any } }) {
     this.setData({ searchValue: e.detail.value });
@@ -47,8 +34,6 @@ Page({
         }, [] as string[]);
         console.log(target);
         this.setData({ drinkInfo: target, ingredients });
-      } else {
-        wx.showToast({ title: '未查到此款鸡尾酒', icon: 'none' });
       }
     } catch (error) {
       const appError = handleApiError(error);

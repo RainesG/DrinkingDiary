@@ -2,6 +2,9 @@
   "usingComponents": {
     "van-icon": "@vant/weapp/icon/index"
   },
+  "resolveAlias": {
+    "@/*": "/*"
+  },
   "pages": [
     "pages/page-diary/index",
     "pages/page-map/index",

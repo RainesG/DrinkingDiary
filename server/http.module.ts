@@ -1,5 +1,6 @@
 // server/http.js (for use in Mini Program, using wx.request)
 
+import { handleApiError, showErrorToast } from '@/utils/error.module';
 import { BuildUrlType, RequestParamsType } from './type';
 
 const SERVICE_URLS = {
@@ -60,18 +61,25 @@ function wxRequestPromisified({
       header,
       timeout,
       success: res => {
+        console.log(res, 'log res');
         // Simulate axios-like response
-        resolve({
-          data: res.data,
-          status: res.statusCode,
-          headers: res.header,
-          config: { url, method, data, header },
-        });
+        if (res.statusCode !== 200) {
+          const appError = handleApiError(res?.data);
+          showErrorToast(appError);
+          reject(appError);
+        } else {
+          resolve({
+            data: res.data,
+            status: res.statusCode,
+            headers: res.header,
+            config: { url, method, data, header },
+          });
+        }
         wx.hideLoading();
       },
       fail: err => {
-        console.log('http client err:', err);
-        reject(err);
+        const appError = handleApiError(err);
+        showErrorToast(appError);
         wx.hideLoading();
       },
     });

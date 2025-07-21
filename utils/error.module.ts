@@ -4,7 +4,7 @@
 
 import { ERROR_MESSAGES } from './config.module';
 
-export interface AppError {
+interface AppError {
   code: string;
   message: string;
   details?: any;
@@ -13,7 +13,7 @@ export interface AppError {
 /**
  * Handle API errors
  */
-export const handleApiError = (error: any): AppError => {
+const handleApiError = (error: any): AppError => {
   console.error('API Error:', error);
 
   if (error.errMsg) {
@@ -32,6 +32,14 @@ export const handleApiError = (error: any): AppError => {
     };
   }
 
+  if (error.details) {
+    return {
+      code: error.error,
+      message: error.details,
+      details: error.details,
+    };
+  }
+
   return {
     code: 'UNKNOWN_ERROR',
     message: ERROR_MESSAGES.NETWORK_ERROR,
@@ -42,7 +50,7 @@ export const handleApiError = (error: any): AppError => {
 /**
  * Handle storage errors
  */
-export const handleStorageError = (error: any, operation: string): AppError => {
+const handleStorageError = (error: any, operation: string): AppError => {
   console.error(`Storage Error (${operation}):`, error);
 
   return {
@@ -55,7 +63,7 @@ export const handleStorageError = (error: any, operation: string): AppError => {
 /**
  * Show error toast
  */
-export const showErrorToast = (error: AppError) => {
+const showErrorToast = (error: AppError) => {
   wx.showToast({
     title: error.message,
     icon: 'none',
@@ -66,7 +74,7 @@ export const showErrorToast = (error: AppError) => {
 /**
  * Show success toast
  */
-export const showSuccessToast = (message: string) => {
+const showSuccessToast = (message: string) => {
   wx.showToast({
     title: message,
     icon: 'success',
@@ -77,10 +85,7 @@ export const showSuccessToast = (message: string) => {
 /**
  * Validate required fields
  */
-export const validateRequired = (
-  data: any,
-  fields: string[]
-): AppError | null => {
+const validateRequired = (data: any, fields: string[]): AppError | null => {
   for (const field of fields) {
     if (
       !data[field] ||
@@ -99,7 +104,7 @@ export const validateRequired = (
 /**
  * Validate number range
  */
-export const validateNumberRange = (
+const validateNumberRange = (
   value: number,
   min: number,
   max: number,
@@ -113,4 +118,14 @@ export const validateNumberRange = (
     };
   }
   return null;
+};
+
+export {
+  AppError,
+  handleApiError,
+  handleStorageError,
+  showErrorToast,
+  showSuccessToast,
+  validateRequired,
+  validateNumberRange,
 };
