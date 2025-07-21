@@ -1,4 +1,4 @@
-import services = require('./server/index.module');
+import * as services from './server/index.module';
 // app.js
 App({
   service: services,

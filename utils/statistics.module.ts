@@ -1,10 +1,12 @@
 // utils/statistics.js
 
+import { RECORD_TYPE, STATISTICS_TYPE } from 'types';
+
 /**
  * Statistics utility for Drinking Diary Mini Program
  */
 
-const { getDrinkingRecords } = require('./storage.js');
+import { getDrinkingRecords } from './storage.module';
 
 /**
  * Calculate total alcohol consumption for a given period
@@ -12,14 +14,14 @@ const { getDrinkingRecords } = require('./storage.js');
  * @param {Date} endDate - End date
  * @returns {Object} Statistics object
  */
-const calculatePeriodStatistics = (startDate, endDate) => {
+const calculatePeriodStatistics = (startDate: Date, endDate: Date): object => {
   const records = getDrinkingRecords();
-  const filteredRecords = records.filter((record) => {
-    const recordDate = new Date(record.timestamp);
+  const filteredRecords = records.filter((record: RECORD_TYPE) => {
+    const recordDate = new Date(record?.timestamp || '');
     return recordDate >= startDate && recordDate <= endDate;
   });
 
-  const statistics = {
+  const statistics: STATISTICS_TYPE = {
     totalRecords: filteredRecords.length,
     totalAmount: 0,
     averageAmount: 0,
@@ -27,7 +29,7 @@ const calculatePeriodStatistics = (startDate, endDate) => {
     dailyBreakdown: {},
   };
 
-  filteredRecords.forEach((record) => {
+  filteredRecords.forEach((record: RECORD_TYPE) => {
     // Add to total amount
     statistics.totalAmount += record.amount || 0;
 
@@ -37,7 +39,7 @@ const calculatePeriodStatistics = (startDate, endDate) => {
       (statistics.drinkTypeBreakdown[drinkType] || 0) + (record.amount || 0);
 
     // Count by day
-    const dateKey = new Date(record.timestamp).toDateString();
+    const dateKey = new Date(record?.timestamp || '').toDateString();
     statistics.dailyBreakdown[dateKey] =
       (statistics.dailyBreakdown[dateKey] || 0) + (record.amount || 0);
   });
@@ -123,8 +125,8 @@ const getDrinkingTrends = (days = 7) => {
     date.setDate(date.getDate() - i);
     const dateKey = date.toDateString();
 
-    const dayRecords = records.filter((record) => {
-      const recordDate = new Date(record.timestamp);
+    const dayRecords = records.filter(record => {
+      const recordDate = new Date(record?.timestamp || '');
       return recordDate.toDateString() === dateKey;
     });
 
@@ -143,44 +145,10 @@ const getDrinkingTrends = (days = 7) => {
   return trends;
 };
 
-/**
- * Get drink type preferences
- * @returns {Object} Drink type preferences
- */
-const getDrinkTypePreferences = () => {
-  const records = getDrinkingRecords();
-  const preferences = {};
-
-  records.forEach((record) => {
-    const drinkType = record.drinkType || 'unknown';
-    if (!preferences[drinkType]) {
-      preferences[drinkType] = {
-        totalAmount: 0,
-        count: 0,
-        averageAmount: 0,
-      };
-    }
-
-    preferences[drinkType].totalAmount += record.amount || 0;
-    preferences[drinkType].count += 1;
-  });
-
-  // Calculate averages
-  Object.keys(preferences).forEach((drinkType) => {
-    if (preferences[drinkType].count > 0) {
-      preferences[drinkType].averageAmount =
-        preferences[drinkType].totalAmount / preferences[drinkType].count;
-    }
-  });
-
-  return preferences;
-};
-
-module.exports = {
+export {
   calculatePeriodStatistics,
   getTodayStatistics,
   getThisWeekStatistics,
   getThisMonthStatistics,
   getDrinkingTrends,
-  getDrinkTypePreferences,
 };

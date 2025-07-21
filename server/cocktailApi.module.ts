@@ -1,4 +1,5 @@
 import { httpClient } from './http.module';
+import { handleApiError, showErrorToast } from '../utils/error.module';
 
 type CocktailType = {
   [key: string]: string;
@@ -12,12 +13,9 @@ const getCocktailByName = async (name: string) => {
     });
     return res?.data;
   } catch (error) {
-    wx.showToast({
-      title: (error as unknown as { errMsg: string })?.errMsg,
-      icon: 'error',
-      duration: 3000,
-    });
-    throw error;
+    const appError = handleApiError(error);
+    showErrorToast(appError);
+    throw appError;
   }
 };
 

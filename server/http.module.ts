@@ -27,7 +27,7 @@ const URL_MODIFIERS = {
 };
 
 function getCurrentConfig() {
-  return { timeout: 20000, apiVersion: 1, retryAttempts: 3 };
+  return { timeout: 20000, retryAttempts: 3 };
 }
 
 function buildUrl({
@@ -99,7 +99,6 @@ const httpClient = {
     const finalUrl = URL_MODIFIERS.addAuthToUrl(url, token);
     const header = {
       'X-Request-ID': generateRequestId(),
-      'X-API-Version': getCurrentConfig().apiVersion,
     };
     return wxRequestPromisified({
       url: finalUrl,
@@ -121,7 +120,6 @@ const httpClient = {
     const header = {
       'Content-Type': 'application/json',
       'X-Request-ID': generateRequestId(),
-      'X-API-Version': getCurrentConfig().apiVersion,
     };
     return wxRequestPromisified({
       url: finalUrl,
@@ -144,7 +142,6 @@ const httpClient = {
     const header = {
       'Content-Type': 'application/json',
       'X-Request-ID': generateRequestId(),
-      'X-API-Version': getCurrentConfig().apiVersion,
     };
     return wxRequestPromisified({
       url: finalUrl,

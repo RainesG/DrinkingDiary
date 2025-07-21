@@ -1,4 +1,5 @@
 import { getCocktailByName, CocktailType } from '../../server/index.module';
+import { handleApiError, showErrorToast } from '../../utils/error.module';
 
 Page({
   data: {
@@ -34,19 +35,24 @@ Page({
   },
 
   async getCocktailByName() {
-    const cocktailInfo = await getCocktailByName(this.data.searchValue);
-    const target = cocktailInfo?.[0];
-    if (target) {
-      const ingredients = Object.keys(target).reduce((ingredients, item) => {
-        if (target[item] && item.includes('strIngredient')) {
-          ingredients.push(target[item]);
-        }
-        return ingredients;
-      }, [] as string[]);
-      console.log(target);
-      this.setData({ drinkInfo: target, ingredients });
-    } else {
-      wx.showToast({ title: '未查到此款鸡尾酒', icon: 'none' });
+    try {
+      const cocktailInfo = await getCocktailByName(this.data.searchValue);
+      const target = cocktailInfo?.[0];
+      if (target) {
+        const ingredients = Object.keys(target).reduce((ingredients, item) => {
+          if (target[item] && item.includes('strIngredient')) {
+            ingredients.push(target[item]);
+          }
+          return ingredients;
+        }, [] as string[]);
+        console.log(target);
+        this.setData({ drinkInfo: target, ingredients });
+      } else {
+        wx.showToast({ title: '未查到此款鸡尾酒', icon: 'none' });
+      }
+    } catch (error) {
+      const appError = handleApiError(error);
+      showErrorToast(appError);
     }
   },
 });

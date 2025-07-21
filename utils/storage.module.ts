@@ -1,5 +1,12 @@
 // utils/storage.js
 
+import { RECORD_TYPE } from 'types';
+import {
+  handleStorageError,
+  showErrorToast,
+  showSuccessToast,
+} from './error.module';
+
 /**
  * Storage utility for Drinking Diary Mini Program
  */
@@ -14,7 +21,7 @@ const STORAGE_KEYS = {
  * Save drinking record
  * @param {Object} record - Drinking record object
  */
-const saveDrinkingRecord = (record) => {
+const saveDrinkingRecord = (record: RECORD_TYPE): boolean => {
   try {
     const records = getDrinkingRecords();
     records.push({
@@ -23,9 +30,11 @@ const saveDrinkingRecord = (record) => {
       timestamp: new Date().toISOString(),
     });
     wx.setStorageSync(STORAGE_KEYS.DRINKING_RECORDS, records);
+    showSuccessToast('记录已保存');
     return true;
   } catch (error) {
-    console.error('Save drinking record failed:', error);
+    const appError = handleStorageError(error, 'Save drinking record');
+    showErrorToast(appError);
     return false;
   }
 };
@@ -34,11 +43,12 @@ const saveDrinkingRecord = (record) => {
  * Get all drinking records
  * @returns {Array} Array of drinking records
  */
-const getDrinkingRecords = () => {
+const getDrinkingRecords = (): RECORD_TYPE[] => {
   try {
     return wx.getStorageSync(STORAGE_KEYS.DRINKING_RECORDS) || [];
   } catch (error) {
-    console.error('Get drinking records failed:', error);
+    const appError = handleStorageError(error, 'Get drinking records');
+    showErrorToast(appError);
     return [];
   }
 };
@@ -47,14 +57,18 @@ const getDrinkingRecords = () => {
  * Delete drinking record by ID
  * @param {Number} id - Record ID
  */
-const deleteDrinkingRecord = (id) => {
+const deleteDrinkingRecord = (id: number) => {
   try {
     const records = getDrinkingRecords();
-    const filteredRecords = records.filter((record) => record.id !== id);
+    const filteredRecords = records.filter(
+      (record: RECORD_TYPE) => record.id !== id
+    );
     wx.setStorageSync(STORAGE_KEYS.DRINKING_RECORDS, filteredRecords);
+    showSuccessToast('记录已删除');
     return true;
   } catch (error) {
-    console.error('Delete drinking record failed:', error);
+    const appError = handleStorageError(error, 'Delete drinking record');
+    showErrorToast(appError);
     return false;
   }
 };
@@ -63,12 +77,14 @@ const deleteDrinkingRecord = (id) => {
  * Save user settings
  * @param {Object} settings - User settings object
  */
-const saveUserSettings = (settings) => {
+const saveUserSettings = (settings: string) => {
   try {
     wx.setStorageSync(STORAGE_KEYS.USER_SETTINGS, settings);
+    showSuccessToast('设置已保存');
     return true;
   } catch (error) {
-    console.error('Save user settings failed:', error);
+    const appError = handleStorageError(error, 'Save user settings');
+    showErrorToast(appError);
     return false;
   }
 };
@@ -81,7 +97,8 @@ const getUserSettings = () => {
   try {
     return wx.getStorageSync(STORAGE_KEYS.USER_SETTINGS) || {};
   } catch (error) {
-    console.error('Get user settings failed:', error);
+    const appError = handleStorageError(error, 'Get user settings');
+    showErrorToast(appError);
     return {};
   }
 };
@@ -91,17 +108,19 @@ const getUserSettings = () => {
  */
 const clearAllData = () => {
   try {
-    Object.values(STORAGE_KEYS).forEach((key) => {
+    Object.values(STORAGE_KEYS).forEach(key => {
       wx.removeStorageSync(key);
     });
+    showSuccessToast('数据已清除');
     return true;
   } catch (error) {
-    console.error('Clear all data failed:', error);
+    const appError = handleStorageError(error, 'Clear all data');
+    showErrorToast(appError);
     return false;
   }
 };
 
-module.exports = {
+export {
   saveDrinkingRecord,
   getDrinkingRecords,
   deleteDrinkingRecord,

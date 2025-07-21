@@ -1,23 +1,48 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <block wx:if="{{canIUseOpenData}}">
-      <view class="userinfo-avatar">
-        <open-data type="userAvatarUrl"></open-data>
+  <!-- Date Selector -->
+  <view class="date-bar">
+    <picker mode="date" value="{{selectedDate}}" bindchange="onDateChange">
+      <view class="date-picker">
+        <text class="date-label">{{selectedDate}}</text>
       </view>
-      <open-data type="userNickName"></open-data>
-    </block>
-    <block wx:elif="{{!hasUserInfo}}">
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> Get User Info </button>
-      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> Get User Info </button>
-      <view wx:else> Please use 1.4.4+ version </view>
-    </block>
-    <block wx:else>
-      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </picker>
+  </view>
+
+  <!-- Quick Select Drinks -->
+  <view class="quick-select-title">快速选择</view>
+  <view class="quick-select-list">
+    <block wx:for="{{quickDrinks}}" wx:key="name">
+      <view class="quick-drink-card">
+        <text class="drink-icon">{{item.icon}}</text>
+        <text class="drink-label">{{item.label}}</text>
+        <view class="amount-controls">
+          <button class="minus-btn" size="mini" data-index="{{index}}" bindtap="onMinus">-</button>
+          <input class="amount-input" type="number" value="{{item.amount}}" data-index="{{index}}" bindinput="onAmountInput" />
+          <button class="add-btn" size="mini" data-index="{{index}}" bindtap="onAdd">+</button>
+          <text class="ml-label">ml</text>
+        </view>
+        <button class="add-record-btn" size="mini" data-index="{{index}}" bindtap="onQuickAdd">添加</button>
+      </view>
     </block>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+
+  <!-- Custom Entry -->
+  <view class="custom-entry-title">自定义饮品</view>
+  <drinking-entry bindsave="onCustomSave" />
+
+  <!-- Summary Card -->
+  <view class="summary-card">
+    <view class="summary-row">
+      <text>今日饮品总量：</text>
+      <text class="summary-value">{{summary.totalAmount}} ml</text>
+    </view>
+    <view class="summary-row">
+      <text>酒精摄入量：</text>
+      <text class="summary-value">{{summary.totalAlcohol}} ml</text>
+    </view>
+    <view class="summary-row">
+      <text class="summary-rating">{{summary.rating}}</text>
+    </view>
   </view>
-</view> 
+</view>

@@ -127,7 +127,7 @@ const SUCCESS_MESSAGES = {
   UPDATE_SUCCESS: '更新成功',
 };
 
-module.exports = {
+export {
   APP_CONFIG,
   DRINK_TYPES,
   UI_CONFIG,
