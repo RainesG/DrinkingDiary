@@ -1,23 +1,62 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <block wx:if="{{canIUseOpenData}}">
-      <view class="userinfo-avatar">
-        <open-data type="userAvatarUrl"></open-data>
+  <view class="search-bar">
+    <input
+      type="text"
+      placeholder="Search cocktail by name"
+      value="{{ searchValue }}"
+      bindinput="onInputChange"
+      confirm-type="search"
+      bindconfirm="getCocktailByName"
+    />
+    <button bindtap="getCocktailByName" size="mini">Search</button>
+  </view>
+  <view class="title">Eiusmod esse aute.</view>
+  <view class="subtitle">Velit anim adipisicing.</view>
+  <view class="decor-icons">🍸 🎲 🍋</view>
+  <view wx:if="{{ cocktails.length }}">
+    <block wx:for="{{ cocktails }}" wx:key="idDrink" wx:for-item="cocktail">
+      <view class="cocktail-item">
+        <image src="{{ cocktail.strDrinkThumb }}" mode="aspectFill" />
+        <text>{{cocktail.strDrink}}</text>
       </view>
-      <open-data type="userNickName"></open-data>
-    </block>
-    <block wx:elif="{{!hasUserInfo}}">
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> Get User Info </button>
-      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> Get User Info </button>
-      <view wx:else> Please use 1.4.4+ version </view>
-    </block>
-    <block wx:else>
-      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+
+<view wx:if="{{drinkInfo.idDrink}}" class="cocktail-detail-card">
+  <!-- Cocktail Name and Category -->
+  <view class="cocktail-header">
+    <text class="cocktail-name">{{drinkInfo.strDrink}}</text>
+    <text class="cocktail-category">{{drinkInfo.strCategory}}</text>
+    <text wx:if="{{drinkInfo.strIBA}}" class="cocktail-iba">IBA: {{drinkInfo.strIBA}}</text>
   </view>
-</view> 
+
+  <!-- Glass and Picture -->
+  <view class="cocktail-glass-pic">
+    <image class="cocktail-pic" src="{{drinkInfo.strDrinkThumb}}" mode="aspectFill" />
+    <text class="cocktail-glass">{{drinkInfo.strGlass}}</text>
+  </view>
+
+  <!-- Ingredients and Measures -->
+  <view class="cocktail-ingredients">
+    <view class="ingredients-title">Ingredients</view>
+    <block wx:for="{{ingredients}}" wx:key="index" wx:for-item="name">
+      <view class="ingredient-row">
+        <text class="ingredient-measure">{{name}}</text>
+      </view>
+    </block>
+  </view>
+
+  <!-- Instructions -->
+  <view class="cocktail-instructions">
+    <view class="instructions-title">Instructions</view>
+    <text>{{drinkInfo.strInstructions}}</text>
+  </view>
+
+  <!-- Tags -->
+  <view wx:if="{{drinkInfo.strTags}}" class="cocktail-tags">
+    <text class="tag-title">Tags:</text>
+      <text class="cocktail-tag">{{drinkInfo.strTags}}</text>
+  </view>
+</view>
+</view>

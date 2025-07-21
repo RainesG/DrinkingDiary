@@ -3,7 +3,7 @@
 import { BuildUrlType, RequestParamsType } from './type';
 
 const SERVICE_URLS = {
-  recipe: 'https://cocktail-backend.vercel.app/api/cocktails',
+  cocktail: 'https://cocktail-backend.vercel.app/api/cocktails',
 };
 
 const URL_MODIFIERS = {
@@ -50,6 +50,8 @@ function wxRequestPromisified({
   timeout = 20000,
 }: RequestParamsType) {
   return new Promise((resolve, reject) => {
+    console.log('data:', data);
+    console.log('header:', header);
     wx.showLoading({ title: '' });
     wx.request({
       url,
@@ -68,6 +70,7 @@ function wxRequestPromisified({
         wx.hideLoading();
       },
       fail: err => {
+        console.log('http client err:', err);
         reject(err);
         wx.hideLoading();
       },

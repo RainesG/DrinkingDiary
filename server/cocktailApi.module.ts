@@ -6,12 +6,17 @@ type CocktailType = {
 
 const getCocktailByName = async (name: string) => {
   try {
-    const res: { data?: { drinks: CocktailType[] } } = await httpClient.get({
-      service: 'recipe',
-      payload: `s=${name}`,
+    const res: { data?: CocktailType[] } = await httpClient.get({
+      service: 'cocktail',
+      payload: `name=${name}`,
     });
     return res?.data;
   } catch (error) {
+    wx.showToast({
+      title: (error as unknown as { errMsg: string })?.errMsg,
+      icon: 'error',
+      duration: 3000,
+    });
     throw error;
   }
 };

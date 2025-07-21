@@ -1,4 +1,7 @@
 {
+  "usingComponents": {
+    "van-icon": "@vant/weapp/icon/index"
+  },
   "pages": [
     "pages/page-diary/index",
     "pages/page-map/index",
@@ -10,7 +13,6 @@
     "navigationBarTitleText": "Drinking Diary",
     "navigationBarTextStyle": "black"
   },
-  "style": "v2",
   "sitemapLocation": "sitemap.json",
   "tabBar": {
     "color": "",
@@ -20,16 +22,18 @@
     "borderStyle": "black",
     "list": [
       {
+        "pagePath": "pages/page-recipe/index",
+        "text": "配方",
+        "iconPath": "./images/recipe.png",
+        "selectedIconPath": "./images/recipe.png"
+      },
+      {
         "pagePath": "pages/page-diary/index",
         "text": "日记"
       },
       {
         "pagePath": "pages/page-map/index",
         "text": "地图"
-      },
-      {
-        "pagePath": "pages/page-recipe/index",
-        "text": "配方"
       }
     ]
   }

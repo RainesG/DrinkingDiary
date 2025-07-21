@@ -1,7 +1,7 @@
-// index.js
+import { getCocktailByName, CocktailType } from '../../server/index.module';
+
 Page({
   data: {
-    motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -9,7 +9,44 @@ Page({
     canIUseOpenData:
       wx.canIUse('open-data.type.userAvatarUrl') &&
       wx.canIUse('open-data.type.userNickName'),
+    searchValue: '',
+    drinkInfo: {} as CocktailType,
+    ingredients: [''],
   },
 
   onLoad() {},
+
+  getUserProfile() {
+    // Get user info
+    wx.getUserProfile({
+      desc: 'Used to display user information',
+      success: res => {
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true,
+        });
+      },
+    });
+  },
+
+  onInputChange(e: { detail: { value: any } }) {
+    this.setData({ searchValue: e.detail.value });
+  },
+
+  async getCocktailByName() {
+    const cocktailInfo = await getCocktailByName(this.data.searchValue);
+    const target = cocktailInfo?.[0];
+    if (target) {
+      const ingredients = Object.keys(target).reduce((ingredients, item) => {
+        if (target[item] && item.includes('strIngredient')) {
+          ingredients.push(target[item]);
+        }
+        return ingredients;
+      }, [] as string[]);
+      console.log(target);
+      this.setData({ drinkInfo: target, ingredients });
+    } else {
+      wx.showToast({ title: '未查到此款鸡尾酒', icon: 'none' });
+    }
+  },
 });

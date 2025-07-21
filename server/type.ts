@@ -1,4 +1,4 @@
-export type ServiceType = 'recipe';
+export type ServiceType = 'cocktail';
 
 export type BuildUrlType = {
   service: ServiceType;

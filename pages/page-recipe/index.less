@@ -1,19 +1,186 @@
-/**index.wxss**/
-.userinfo {
+/* Background and container */
+.container {
+  background: @--background-color;
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #aaa;
+  padding: @--col-1;
+  min-height: 100vh;
+  font-family: 'Georgia', 'Times New Roman', serif;
 }
 
-.userinfo-avatar {
-  overflow: hidden;
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+/* Search bar */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: @--bg-white;
+  border-radius: @--border-radius-xl;
+  box-shadow: 0 4rpx 16rpx #e0e0e0;
+  padding: 0.5rem @--col-1;
+  width: 100%;
 }
 
-.usermotto {
-  margin-top: 200px;
+.search-bar input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 28rpx;
+  outline: none;
+  color: #222;
+}
+
+.search-bar button {
+  background: #2d3a6b;
+  color: #fff;
+  border: none;
+  border-radius: 24rpx;
+  padding: 8rpx 32rpx;
+  font-size: 28rpx;
+  margin-left: 16rpx;
+  font-family: inherit;
+  transition: background 0.2s;
+}
+/* Title styles */
+.title {
+  font-size: @--typo-xl;
+  font-weight: bold;
+  letter-spacing: 2rpx;
+  color: #222;
+  margin-top: 32rpx;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 32rpx;
+  font-family: 'Brush Script MT', cursive;
+  color: #2d3a6b;
+  margin-bottom: 24rpx;
+  text-align: center;
+}
+
+/* Decorative icons */
+.decor-icons {
+  font-size: 36rpx;
+  margin: 8rpx 0 16rpx 0;
+  text-align: center;
+}
+
+.search-bar button:active {
+  background: #1a2240;
+}
+
+/* Cocktail list */
+.cocktail-item {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 20rpx;
+  box-shadow: 0 2rpx 8rpx #e0e0e0;
+  margin: 16rpx 0;
+  padding: 16rpx;
+  width: 90vw;
+  max-width: 600rpx;
+}
+
+.cocktail-item image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 16rpx;
+  margin-right: 24rpx;
+  border: 2rpx solid #2d3a6b;
+}
+
+.cocktail-item text {
+  font-size: 32rpx;
+  color: #2d3a6b;
+  font-weight: bold;
+}
+
+/* Data table (drinkInfo) */
+.cocktail-detail-card {
+  background: #fff;
+  border-radius: 24rpx;
+  box-shadow: 0 4rpx 16rpx #e0e0e0;
+  padding: 32rpx;
+  margin: 32rpx 0;
+  max-width: 700rpx;
+  width: 90vw;
+}
+.cocktail-header {
+  text-align: center;
+  margin-bottom: 16rpx;
+}
+.cocktail-name {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #2d3a6b;
+}
+.cocktail-category,
+.cocktail-iba {
+  font-size: 28rpx;
+  color: #b85c38;
+  margin-left: 12rpx;
+}
+.cocktail-glass-pic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 16rpx 0;
+}
+.cocktail-pic {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 16rpx;
+  margin-right: 24rpx;
+  border: 2rpx solid #2d3a6b;
+}
+.cocktail-glass {
+  font-size: 28rpx;
+  color: #2d3a6b;
+}
+.cocktail-ingredients {
+  margin: 16rpx 0;
+}
+.ingredients-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #2d3a6b;
+  margin-bottom: 8rpx;
+}
+.ingredient-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 26rpx;
+  margin-bottom: 4rpx;
+}
+.ingredient-name {
+  color: #222;
+}
+.ingredient-measure {
+  color: #b85c38;
+}
+.cocktail-instructions {
+  margin: 16rpx 0;
+}
+.instructions-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #2d3a6b;
+  margin-bottom: 8rpx;
+}
+.cocktail-tags {
+  margin-top: 12rpx;
+}
+.tag-title {
+  font-size: 26rpx;
+  color: #b85c38;
+  margin-right: 8rpx;
+}
+.cocktail-tag {
+  background: #f5e9d7;
+  color: #2d3a6b;
+  border-radius: 8rpx;
+  padding: 4rpx 12rpx;
+  margin-right: 8rpx;
+  font-size: 24rpx;
 }
