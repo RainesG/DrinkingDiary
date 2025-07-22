@@ -1,8 +1,18 @@
+import { INGREDIENT_TYPE } from '@/types';
 import { httpClient } from './http.module';
 import { handleApiError, showErrorToast } from '@/utils/error.module';
 
 type CocktailType = {
-  [key: string]: string;
+  id: number;
+  name: string;
+  dateModified: string;
+  alcoholic: string;
+  category: string;
+  thumb: string;
+  glass: string;
+  ingredients: INGREDIENT_TYPE;
+  instructions: string;
+  IBA: string;
 };
 
 const getCocktailByName = async (name: string) => {

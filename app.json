@@ -6,9 +6,9 @@
     "@/*": "/*"
   },
   "pages": [
+    "pages/page-recipe/index",
     "pages/page-diary/index",
-    "pages/page-map/index",
-    "pages/page-recipe/index"
+    "pages/page-map/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -18,9 +18,9 @@
   },
   "sitemapLocation": "sitemap.json",
   "tabBar": {
-    "color": "",
-    "selectedColor": "",
-    "backgroundColor": "",
+    "color": "#000",
+    "selectedColor": "#000",
+    "backgroundColor": "#f9f6ef",
     "position": "bottom",
     "borderStyle": "black",
     "list": [

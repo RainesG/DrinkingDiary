@@ -3,8 +3,33 @@
 import { handleApiError, showErrorToast } from '@/utils/error.module';
 import { BuildUrlType, RequestParamsType } from './type';
 
+const {
+  miniProgram: { envVersion },
+} = wx.getAccountInfoSync();
+console.log(wx.getAccountInfoSync());
+let baseURL = '';
+switch (envVersion) {
+  case 'develop':
+    baseURL = 'http://127.0.0.1:3000';
+    break;
+
+  case 'trial':
+    baseURL = 'https://cocktail-backend-git-dev-rainesgs-projects.vercel.app';
+    break;
+
+  case 'release':
+    baseURL = 'https://cocktail-backend.vercel.app';
+
+    break;
+
+  default:
+    baseURL = 'https://cocktail-backend.vercel.app';
+    break;
+}
+
+console.log(envVersion, 'version');
 const SERVICE_URLS = {
-  cocktail: 'https://cocktail-backend.vercel.app/api/cocktails',
+  cocktail: `${baseURL}/api/cocktails`,
 };
 
 const URL_MODIFIERS = {

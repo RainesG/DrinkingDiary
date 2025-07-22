@@ -14,4 +14,9 @@ type STATISTICS_TYPE = {
   dailyBreakdown: { [key: string]: number };
 };
 
-export { RECORD_TYPE, STATISTICS_TYPE };
+type INGREDIENT_TYPE = {
+  ingredient: string;
+  measure: string;
+}[];
+
+export { RECORD_TYPE, STATISTICS_TYPE, INGREDIENT_TYPE };

@@ -12,7 +12,7 @@ Page({
       wx.canIUse('open-data.type.userNickName'),
     searchValue: '',
     drinkInfo: {} as CocktailType,
-    ingredients: [''],
+    ingredients: [] as { measure: string; ingredient: string }[],
   },
 
   onLoad() {},
@@ -23,17 +23,20 @@ Page({
 
   async getCocktailByName() {
     try {
+      if (!this.data.searchValue) {
+        wx.showToast({ title: '请输入', icon: 'none' });
+        return;
+      }
+
       const cocktailInfo = await getCocktailByName(this.data.searchValue);
-      const target = cocktailInfo?.[0];
-      if (target) {
-        const ingredients = Object.keys(target).reduce((ingredients, item) => {
-          if (target[item] && item.includes('strIngredient')) {
-            ingredients.push(target[item]);
-          }
-          return ingredients;
-        }, [] as string[]);
-        console.log(target);
-        this.setData({ drinkInfo: target, ingredients });
+      console.log(cocktailInfo, 'info log');
+      if ((cocktailInfo?.length || 0) > 0) {
+        this.setData({
+          drinkInfo: cocktailInfo?.[0],
+          ingredients: cocktailInfo?.[0]?.ingredients,
+        });
+      } else {
+        showErrorToast({ code: '200', message: JSON.stringify(cocktailInfo) });
       }
     } catch (error) {
       const appError = handleApiError(error);
