@@ -15,10 +15,10 @@ type CocktailType = {
   IBA: string;
 };
 
-const getCocktailByName = async (name: string) => {
+const getCocktailInfo = async (name: string) => {
   try {
     const res: { data?: CocktailType[] } = await httpClient.get({
-      service: 'cocktail',
+      url: '/api/getCocktailInfo',
       payload: `name=${name}`,
     });
     return res?.data;
@@ -29,5 +29,18 @@ const getCocktailByName = async (name: string) => {
   }
 };
 
-export { getCocktailByName };
+const getTrendCocktails = async () => {
+  try {
+    const res: { data?: CocktailType[] } = await httpClient.get({
+      url: '/api/getTrendCocktails',
+    });
+    return res?.data;
+  } catch (error) {
+    const appError = handleApiError(error);
+    showErrorToast(appError);
+    throw appError;
+  }
+};
+
+export { getCocktailInfo, getTrendCocktails };
 export type { CocktailType };

@@ -1,9 +1,6 @@
-export type ServiceType = 'cocktail';
-
 export type BuildUrlType = {
-  service: ServiceType;
-  payload: any;
-  options?: { userId: string; cacheBuster: boolean };
+  url: string;
+  payload?: any;
 };
 
 export type RequestParamsType = {

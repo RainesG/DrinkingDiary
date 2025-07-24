@@ -14,7 +14,7 @@ switch (envVersion) {
     break;
 
   case 'trial':
-    baseURL = 'https://cocktail-backend-git-dev-rainesgs-projects.vercel.app';
+    baseURL = 'https://cocktail-backend.vercel.app';
     break;
 
   case 'release':
@@ -28,9 +28,6 @@ switch (envVersion) {
 }
 
 console.log(envVersion, 'version');
-const SERVICE_URLS = {
-  cocktail: `${baseURL}/api/cocktails`,
-};
 
 const URL_MODIFIERS = {
   addAuthToUrl: (url: string, token: string | null) => {
@@ -54,18 +51,6 @@ const URL_MODIFIERS = {
 
 function getCurrentConfig() {
   return { timeout: 20000, retryAttempts: 3 };
-}
-
-function buildUrl({
-  service,
-  payload,
-  options = { userId: '', cacheBuster: false },
-}: BuildUrlType): string {
-  const { userId, cacheBuster } = options;
-  let url = SERVICE_URLS[service] + (payload ? `?${payload}` : '');
-  if (userId) url = URL_MODIFIERS.addUserId(url, userId);
-  if (cacheBuster) url = URL_MODIFIERS.addCacheBuster(url);
-  return url;
 }
 
 function wxRequestPromisified({
@@ -122,14 +107,10 @@ function generateRequestId() {
 
 // Enhanced HTTP client methods with URL building
 const httpClient = {
-  get: ({
-    service,
-    payload,
-    options,
-  }: BuildUrlType): Promise<{ data: any }> => {
-    const url = buildUrl({ service, payload, options });
+  get: ({ url, payload }: BuildUrlType): Promise<{ data: any }> => {
+    const longUrl = baseURL + url + (payload ? `?${payload}` : '');
     const token = getAuthToken();
-    const finalUrl = URL_MODIFIERS.addAuthToUrl(url, token);
+    const finalUrl = URL_MODIFIERS.addAuthToUrl(longUrl, token);
     const header = {
       'X-Request-ID': generateRequestId(),
     };
@@ -141,15 +122,10 @@ const httpClient = {
     } as RequestParamsType) as unknown as Promise<{ data: any }>;
   },
 
-  post: ({
-    service,
-    payload,
-    data,
-    options,
-  }: BuildUrlType & RequestParamsType) => {
-    const url = buildUrl({ service, payload, options });
+  post: ({ url, payload, data }: BuildUrlType & RequestParamsType) => {
+    const longUrl = baseURL + url + (payload ? `?${payload}` : '');
     const token = getAuthToken();
-    const finalUrl = URL_MODIFIERS.addAuthToUrl(url, token);
+    const finalUrl = URL_MODIFIERS.addAuthToUrl(longUrl, token);
     const header = {
       'Content-Type': 'application/json',
       'X-Request-ID': generateRequestId(),
@@ -163,15 +139,10 @@ const httpClient = {
     });
   },
 
-  put: ({
-    service,
-    payload,
-    data,
-    options,
-  }: BuildUrlType & RequestParamsType) => {
-    const url = buildUrl({ service, payload, options });
+  put: ({ url, payload, data }: BuildUrlType & RequestParamsType) => {
+    const longUrl = baseURL + url + (payload ? `?${payload}` : '');
     const token = getAuthToken();
-    const finalUrl = URL_MODIFIERS.addAuthToUrl(url, token);
+    const finalUrl = URL_MODIFIERS.addAuthToUrl(longUrl, token);
     const header = {
       'Content-Type': 'application/json',
       'X-Request-ID': generateRequestId(),
@@ -185,8 +156,7 @@ const httpClient = {
     });
   },
 
-  buildUrl,
   getConfig: getCurrentConfig,
 };
 
-export { httpClient, buildUrl, getCurrentConfig, URL_MODIFIERS, SERVICE_URLS };
+export { httpClient, getCurrentConfig, URL_MODIFIERS };

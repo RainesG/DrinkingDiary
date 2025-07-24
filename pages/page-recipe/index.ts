@@ -1,4 +1,8 @@
-import { getCocktailByName, CocktailType } from '@/server/index.module';
+import {
+  getCocktailInfo,
+  getTrendCocktails,
+  CocktailType,
+} from '@/server/index.module';
 import { handleApiError, showErrorToast } from '@/utils/error.module';
 
 Page({
@@ -12,10 +16,13 @@ Page({
       wx.canIUse('open-data.type.userNickName'),
     searchValue: '',
     drinkInfo: {} as CocktailType,
+    cocktails: [] as CocktailType[],
     ingredients: [] as { measure: string; ingredient: string }[],
   },
 
-  onLoad() {},
+  onLoad() {
+    this.getTrendCocktails();
+  },
 
   onInputChange(e: { detail: { value: any } }) {
     this.setData({ searchValue: e.detail.value });
@@ -28,7 +35,7 @@ Page({
         return;
       }
 
-      const cocktailInfo = await getCocktailByName(this.data.searchValue);
+      const cocktailInfo = await getCocktailInfo(this.data.searchValue);
       console.log(cocktailInfo, 'info log');
       if ((cocktailInfo?.length || 0) > 0) {
         this.setData({
@@ -37,6 +44,23 @@ Page({
         });
       } else {
         showErrorToast({ code: '200', message: JSON.stringify(cocktailInfo) });
+      }
+    } catch (error) {
+      const appError = handleApiError(error);
+      showErrorToast(appError);
+    }
+  },
+
+  async getTrendCocktails() {
+    try {
+      const trends = await getTrendCocktails();
+      console.log(trends, 'trends log');
+      if ((trends?.length || 0) > 0) {
+        this.setData({
+          cocktails: trends,
+        });
+      } else {
+        showErrorToast({ code: '200', message: JSON.stringify(trends) });
       }
     } catch (error) {
       const appError = handleApiError(error);

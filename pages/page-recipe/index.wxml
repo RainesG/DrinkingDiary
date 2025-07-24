@@ -11,9 +11,6 @@
     />
     <button bindtap="getCocktailByName" size="mini">Search</button>
   </view>
-  <view class="title">Eiusmod esse aute.</view>
-  <view class="subtitle">Velit anim adipisicing.</view>
-  <view class="decor-icons">🍸 🎲 🍋</view>
   <view wx:if="{{ cocktails.length }}">
     <block wx:for="{{ cocktails }}" wx:key="idDrink" wx:for-item="cocktail">
       <view class="cocktail-item">

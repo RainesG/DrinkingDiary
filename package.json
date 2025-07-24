@@ -15,7 +15,8 @@
     "update": "pnpm update",
     "outdated": "pnpm outdated",
     "prepare": "husky install",
-    "tsc": "node ./node_modules/typescript/lib/tsc.js"
+    "tsc": "node ./node_modules/typescript/lib/tsc.js",
+    "style": "stylelint 'src/**/*.(vue|css|less)' --fix"
   },
   "keywords": [
     "wechat",
