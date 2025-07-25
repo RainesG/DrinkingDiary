@@ -61,9 +61,7 @@ const UI_CONFIG = {
   TEXT_COLOR: '#323233',
   TEXT_COLOR_SECONDARY: '#969799',
   BORDER_COLOR: '#ebedf0',
-  BORDER_RADIUS: '8rpx',
-  PADDING: '20rpx',
-  MARGIN: '20rpx',
+  BORDER_RADIUS: '0.5rem',
 };
 
 // Storage keys

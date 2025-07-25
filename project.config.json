@@ -10,9 +10,9 @@
     "include": []
   },
   "scripts": {
-    "beforeCompile": "source ~/.zshrc && npm run tsc",
-    "beforePreview": "source ~/.zshrc && npm run tsc",
-    "beforeUpload": "source ~/.zshrc && npm run tsc"
+    "beforeCompile": "source ~/.zshrc && npm run style && npm run tsc",
+    "beforePreview": "source ~/.zshrc && npm run style && npm run tsc",
+    "beforeUpload": "source ~/.zshrc && npm run style && npm run tsc"
   },
   "setting": {
     "bundle": false,
