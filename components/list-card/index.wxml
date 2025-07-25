@@ -1,0 +1,3 @@
+<view class="quick-drink-card">
+	<slot></slot>
+</view>

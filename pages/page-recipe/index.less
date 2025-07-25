@@ -1,69 +1,60 @@
-/* Background and container */
 .container {
-  display: flex;
-  padding: @--col-1;
-  min-height: 100vh;
-  font-family: Georgia, 'Times New Roman', serif;
-  background: @--background-color;
-  flex-direction: column;
-  gap: 1rem;
+  padding-top: 5rem;
+  padding-bottom: 1rem;
+  font-size: 1rem;
 }
 
 /* Search bar */
-.search-bar {
-  display: flex;
-  align-items: center;
-  padding: 0.5rem;
-  width: 100%;
-  border-radius: @--border-radius-xl;
-  background: @--bg-white;
-}
-.search-bar input {
-  font-size: 1rem;
-  border: none;
-  color: #222222;
-  background: transparent;
-  outline: none;
-  flex: 1;
-}
-.search-bar button {
-  padding: 0 1rem;
-  font-size: 1rem;
-  font-family: inherit;
-  border: none;
-  border-radius: @--border-radius-s;
-  color: #ffffff;
-  background: #2d3a6b;
-  transition: background 0.2s;
-}
-.search-bar button:active {
-  background: #1a2240;
+
+.search-bar-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 1rem 0;
+  border-bottom: 1px solid @--border-color;
+  background-color: @--bg-white;
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    margin: 0 @--col-1;
+    padding: 0.5rem 1rem;
+    width: @--col-22;
+    border-radius: @--border-radius-xl;
+    box-shadow: 0 2px 8px 0 rgb(60 64 67 / 25%);
+
+    input {
+      border: none;
+      color: #222222;
+      outline: none;
+      flex: 1;
+    }
+
+    .button {
+      padding-left: 1rem;
+      width: 1.5rem;
+      height: 1.5rem;
+      border-left: 1px solid @--border-color;
+      box-sizing: content-box;
+    }
+  }
 }
 
 /* Cocktail list */
-.cocktail-item {
-  display: flex;
-  align-items: center;
-  margin: 1rem 0;
-  padding: 1rem;
-  width: 90vw;
-  border-radius: @--border-radius-m;
-  background: #ffffff;
-  box-shadow: 0 4px 16px #e0e0e0;
-}
-.cocktail-item image {
-  width: 8rem;
-  height: 8rem;
-  border: 4px solid #2d3a6b;
+
+.cocktail-image {
+  width: 5rem;
+  height: 5rem;
   border-radius: 1rem;
 }
-.cocktail-item text {
-  font-size: 2rem;
+
+text {
   font-weight: bold;
   color: #2d3a6b;
 }
 
 /* Data table (drinkInfo) */
+
 .cocktail-detail-card {
   display: flex;
   margin: 2rem 0;
@@ -75,20 +66,23 @@
   flex-direction: column;
   gap: 1rem;
 }
+
 .cocktail-header {
   margin-bottom: 1rem;
   text-align: center;
 }
+
 .cocktail-name {
   font-size: 3rem;
   font-weight: bold;
   color: #2d3a6b;
 }
+
 .cocktail-category,
 .cocktail-iba {
-  font-size: 2rem;
   color: #b85c38;
 }
+
 .cocktail-glass-pic {
   display: flex;
   align-items: center;
@@ -96,40 +90,45 @@
   gap: 1rem;
   margin: 1rem 0;
 }
+
 .cocktail-pic {
   width: 10rem;
   height: 10rem;
   border: 4px solid #2d3a6b;
   border-radius: 1rem;
 }
+
 .cocktail-glass {
-  font-size: 2rem;
   color: #2d3a6b;
 }
+
 .cocktail-ingredients {
   margin: 1rem 0;
 }
+
 .ingredients-title {
-  font-size: 2rem;
   font-weight: bold;
   color: #2d3a6b;
 }
+
 .ingredient-row {
   display: flex;
   justify-content: space-around;
-  font-size: 2rem;
 }
+
 .ingredient-name {
   color: #222222;
 }
+
 .ingredient-measure {
   color: #b85c38;
 }
+
 .cocktail-instructions {
   margin: 1rem 0;
 }
+
 .instructions-title {
-  font-size: 2rem;
   font-weight: bold;
   color: #2d3a6b;
 }

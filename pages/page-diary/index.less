@@ -1,101 +1,82 @@
 @import '/styles/variables.less';
+
 .container {
-  position: relative;
+  padding-top: 4rem;
+  font-size: 1rem;
+}
+
+.record-list {
   display: flex;
-  align-items: center;
-  padding: @--col-1;
-  min-height: 100vh;
-  font-family: @--font-main;
-  background: @--background-color;
-  flex-direction: column;
-}
-.date-bar {
-  display: flex;
-  justify-content: center;
-  margin: @--col-1;
-  width: 100%;
-}
-.date-picker {
-  padding: @--col-1;
-  border-radius: @--border-radius-xl;
-  background: @--bg-white;
-  box-shadow: 0 4px 16px #e0e0e0;
-}
-.date-label {
-  font-size: 2rem;
-  color: @--primary-color;
-}
-.quick-select-title,
-.custom-entry-title {
-  margin: @--col-1;
-  width: 100%;
-  font-size: 2rem;
-  font-weight: bold;
-  text-align: left;
-  color: @--primary-color;
-}
-.quick-select-list {
-  display: flex;
-  flex-wrap: wrap;
+  flex-flow: column wrap;
   justify-content: center;
   gap: 1rem;
   width: 100%;
 }
-.quick-drink-card {
-  display: flex;
-  align-items: center;
-  background: @--bg-white;
-  flex-direction: column;
-}
-.drink-label {
-  font-size: 2rem;
+
+.custom-entry-title {
+  margin: @--col-1;
+  width: 100%;
+  font-weight: bold;
+  text-align: left;
   color: @--primary-color;
 }
+
+.drink-label {
+  color: @--primary-color;
+}
+
 .amount-controls {
   display: flex;
   align-items: center;
 }
+
 .minus-btn,
 .add-btn {
-  font-size: 2rem;
   border: none;
   color: #ffffff;
   background: @--primary-color;
 }
+
+.drink-image {
+  width: 4rem;
+  height: 4rem;
+}
+
 .amount-input {
-  font-size: 2rem;
   border: 1px solid @--border-color;
   text-align: center;
   background: #f5f5f5;
 }
+
 .ml-label {
-  font-size: 1rem;
   color: @--muted-color;
 }
+
 .add-record-btn {
-  font-size: 2rem;
   color: #ffffff;
   background: @--secondary-color;
 }
+
 .summary-card {
   margin: 2rem 0;
   padding: 2rem;
   width: 90vw;
   background: @--bg-white;
 }
+
 .summary-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 2rem;
 }
+
 .summary-value {
   font-weight: bold;
   color: @--primary-color;
 }
+
 .summary-rating {
   width: 100%;
-  font-size: 2rem;
   font-family: @--font-accent;
   text-align: center;
   color: @--secondary-color;

@@ -1,6 +1,15 @@
 <!--logs.wxml-->
 <view class="container log-list">
-  <block wx:for="{{logs}}" wx:key="timeStamp" wx:for-item="log">
-    <text class="log-item">{{index + 1}}. {{log.date}}</text>
-  </block>
-</view> 
+	<!-- Date Selector -->
+	<view class="date-bar">
+		<button bindtap="onDateClick" data-type="previous">
+			<van-icon name="arrow-left" />
+		</button>
+		<picker mode="date" value="{{ selectedDate }}" bindchange="onDateChange">
+			<text class="date-label">{{selectedDate}}</text>
+		</picker>
+		<button bindtap="onDateClick" data-type="next">
+			<van-icon name="arrow" />
+		</button>
+	</view>
+</view>

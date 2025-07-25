@@ -1,6 +1,8 @@
 {
   "usingComponents": {
-    "van-icon": "@vant/weapp/icon/index"
+    "van-icon": "@vant/weapp/icon/index",
+    "van-button": "@vant/weapp/button/index",
+    "list-card": "/components/list-card/index"
   },
   "resolveAlias": {
     "@/*": "/*"
@@ -20,7 +22,7 @@
   "tabBar": {
     "color": "#000",
     "selectedColor": "#000",
-    "backgroundColor": "#f9f6ef",
+    "backgroundColor": "#fff",
     "position": "bottom",
     "borderStyle": "black",
     "list": [

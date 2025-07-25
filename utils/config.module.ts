@@ -11,59 +11,6 @@ const APP_CONFIG = {
   DESCRIPTION: 'Track your drinking habits and maintain a drinking diary',
 };
 
-// Drink types configuration
-const DRINK_TYPES = {
-  BEER: {
-    name: 'beer',
-    label: '啤酒',
-    icon: '🍺',
-    defaultAmount: 330,
-    alcoholContent: 5.0,
-  },
-  WINE: {
-    name: 'wine',
-    label: '红酒',
-    icon: '🍷',
-    defaultAmount: 150,
-    alcoholContent: 12.0,
-  },
-  SPIRIT: {
-    name: 'spirit',
-    label: '白酒',
-    icon: '🥃',
-    defaultAmount: 30,
-    alcoholContent: 40.0,
-  },
-  COCKTAIL: {
-    name: 'cocktail',
-    label: '鸡尾酒',
-    icon: '🍸',
-    defaultAmount: 200,
-    alcoholContent: 15.0,
-  },
-  OTHER: {
-    name: 'other',
-    label: '其他',
-    icon: '🍶',
-    defaultAmount: 100,
-    alcoholContent: 10.0,
-  },
-};
-
-// UI configuration
-const UI_CONFIG = {
-  PRIMARY_COLOR: '#07c160',
-  SECONDARY_COLOR: '#1989fa',
-  WARNING_COLOR: '#ff976a',
-  DANGER_COLOR: '#ee0a24',
-  SUCCESS_COLOR: '#07c160',
-  BACKGROUND_COLOR: '#f7f8fa',
-  TEXT_COLOR: '#323233',
-  TEXT_COLOR_SECONDARY: '#969799',
-  BORDER_COLOR: '#ebedf0',
-  BORDER_RADIUS: '0.5rem',
-};
-
 // Storage keys
 const STORAGE_KEYS = {
   DRINKING_RECORDS: 'drinking_records',
@@ -127,8 +74,6 @@ const SUCCESS_MESSAGES = {
 
 export {
   APP_CONFIG,
-  DRINK_TYPES,
-  UI_CONFIG,
   STORAGE_KEYS,
   DEFAULT_SETTINGS,
   VALIDATION_RULES,

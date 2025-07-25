@@ -4,6 +4,7 @@ import {
   CocktailType,
 } from '@/server/index.module';
 import { handleApiError, showErrorToast } from '@/utils/error.module';
+const app = getApp();
 
 Page({
   data: {
@@ -56,6 +57,7 @@ Page({
       const trends = await getTrendCocktails();
       console.log(trends, 'trends log');
       if ((trends?.length || 0) > 0) {
+        app.globalData.trends = trends;
         this.setData({
           cocktails: trends,
         });

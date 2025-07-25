@@ -1,54 +1,59 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="search-bar">
-    <input
-      type="text"
-      placeholder="Search cocktail by name"
-      value="{{ searchValue }}"
-      bindinput="onInputChange"
-      confirm-type="search"
-      bindconfirm="getCocktailByName"
-    />
-    <button bindtap="getCocktailByName" size="mini">Search</button>
-  </view>
-  <view wx:if="{{ cocktails.length }}">
-    <block wx:for="{{ cocktails }}" wx:key="idDrink" wx:for-item="cocktail">
-      <view class="cocktail-item">
-        <image src="{{ cocktail.thumb }}" mode="aspectFill" />
-        <text>{{cocktail.name}}</text>
-      </view>
-    </block>
-  </view>
-
-<view wx:if="{{drinkInfo.id}}" class="cocktail-detail-card">
-  <!-- Cocktail Name and Category -->
-  <view class="cocktail-header">
-    <text class="cocktail-name">{{drinkInfo.name}}</text>
-    <text class="cocktail-category">{{drinkInfo.category}}</text>
-    <text wx:if="{{drinkInfo.IBA}}" class="cocktail-iba">IBA: {{drinkInfo.IBA}}</text>
-  </view>
-
-  <!-- Glass and Picture -->
-  <view class="cocktail-glass-pic">
-    <image class="cocktail-pic" src="{{drinkInfo.thumb}}" mode="aspectFill" />
-    <text class="cocktail-glass">{{drinkInfo.glass}}</text>
-  </view>
-
-  <!-- Ingredients and Measures -->
-  <view class="cocktail-ingredients">
-    <view class="ingredients-title">Ingredients</view>
-    <block wx:for="{{ingredients}}" wx:key="index" wx:for-item="name">
-      <view class="ingredient-row">
-        <text class="ingredient">{{name.ingredient}}</text>
-        <text class="ingredient-measure">{{name.measure}}</text>
-      </view>
-    </block>
-  </view>
-
-  <!-- Instructions -->
-  <view class="cocktail-instructions">
-    <view class="instructions-title">Instructions</view>
-    <text>{{drinkInfo.instructions}}</text>
-  </view>
-</view>
+	<view class="search-bar-wrapper">
+		<view class="search-bar">
+			<input
+				type="text"
+				placeholder="Search cocktail by name"
+				value="{{ searchValue }}"
+				bindinput="onInputChange"
+				confirm-type="search"
+				bindconfirm="getCocktailByName"
+			/>
+			<van-button type="danger" bindtap="getCocktailByName" class="button">
+				<van-icon name="search" size="1.5rem"/>
+			</van-button>
+		</view>
+	</view>
+	<view wx:if="{{ cocktails.length }}" class="content">
+		<block wx:for="{{ cocktails }}" wx:key="idDrink" wx:for-item="cocktail">
+			<list-card>
+				<image src="{{ cocktail.thumb }}" mode="aspectFill" class="cocktail-image" />
+				<view>
+					<view>{{cocktail.name}}</view>
+					<view>{{cocktail.alcoholic}}</view>
+					<view>{{cocktail.category}}</view>
+					<view>{{cocktail.glass}}</view>
+				</view>
+			</list-card>
+		</block>
+	</view>
+	<view wx:if="{{ drinkInfo.id }}" class="cocktail-detail-card">
+		<!-- Cocktail Name and Category -->
+		<view class="cocktail-header">
+			<text class="cocktail-name">{{drinkInfo.name}}</text>
+			<text class="cocktail-category">{{drinkInfo.category}}</text>
+			<text wx:if="{{ drinkInfo.IBA }}" class="cocktail-iba">IBA: {{drinkInfo.IBA}}</text>
+		</view>
+		<!-- Glass and Picture -->
+		<view class="cocktail-glass-pic">
+			<image class="cocktail-pic" src="{{ drinkInfo.thumb }}" mode="aspectFill" />
+			<text class="cocktail-glass">{{drinkInfo.glass}}</text>
+		</view>
+		<!-- Ingredients and Measures -->
+		<view class="cocktail-ingredients">
+			<view class="ingredients-title">Ingredients</view>
+			<block wx:for="{{ ingredients }}" wx:key="index" wx:for-item="name">
+				<view class="ingredient-row">
+					<text class="ingredient">{{name.ingredient}}</text>
+					<text class="ingredient-measure">{{name.measure}}</text>
+				</view>
+			</block>
+		</view>
+		<!-- Instructions -->
+		<view class="cocktail-instructions">
+			<view class="instructions-title">Instructions</view>
+			<text>{{drinkInfo.instructions}}</text>
+		</view>
+	</view>
 </view>
